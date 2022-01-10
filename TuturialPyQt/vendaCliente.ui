@@ -772,7 +772,7 @@
     <number>0</number>
    </property>
    <property name="text">
-    <string/>
+    <string>0,00€</string>
    </property>
   </widget>
   <widget class="QLabel" name="backgrounhd">

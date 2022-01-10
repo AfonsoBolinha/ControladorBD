@@ -23,8 +23,8 @@ def bdstring(string):
     return str(string).replace("(", "").replace(")", "").replace(",", "").replace("'", "").replace("'", "")
 
 
-
 class Ui_AplicacaoCaixa(object):
+
     def abreCaixa(self):
         self.window = QtWidgets.QWidget()
         self.ui = Ui_Venda()
@@ -32,14 +32,10 @@ class Ui_AplicacaoCaixa(object):
         self.window.show()
 
     def selectAbrir(self):
-        empCaixa = filial.execute("""SELECT IDEmp FROM EmpCaixa""")
-        for caixas in empCaixa:
-            if int(bdint(caixas)) == self.IDE.value():
-                self.abreCaixa()
-        #empBalcao = filial.execute("""SELECT IDEmp FROM EmpBalcao""")
-        #for balcoes in empBalcao:
-        #    if int(bdint(balcoes)) == IDE:
-        #        abreBalcao()
+        self.abreCaixa()
+        self.idb=self.IDB.value()
+        self.ui.idbs=self.idb
+        self.ui.idemp=self.IDE.value()
 
 
     def setupUi(self, AplicacaoCaixa):
@@ -102,20 +98,18 @@ class Ui_AplicacaoCaixa(object):
         self.retranslateUi(AplicacaoCaixa)
         QtCore.QMetaObject.connectSlotsByName(AplicacaoCaixa)
         self.butaoInfo.clicked.connect(self.selectAbrir)
+        self.IDB.setMaximum(4)
+        self.IDB.setMinimum(2)
+        self.IDE.setMinimum(1)
+        self.IDE.setMaximum(10)
+
 
     def retranslateUi(self, AplicacaoCaixa):
         _translate = QtCore.QCoreApplication.translate
         AplicacaoCaixa.setWindowTitle(_translate("AplicacaoCaixa", "Aplicação Caixa"))
-        self.Label1.setText(_translate("AplicacaoCaixa", "Insira o Seu IDB"))
+        self.Label1.setText(_translate("AplicacaoCaixa", "Insira o Seu IDL"))
         self.Label2.setText(_translate("AplicacaoCaixa", "Insira o Seu IDE"))
         self.butaoInfo.setText(_translate("AplicacaoCaixa", "Continuar"))
-
-
-
-
-
-
-
 
 
 if __name__ == "__main__":
@@ -125,5 +119,3 @@ if __name__ == "__main__":
     ui.setupUi(AplicacaoCaixa)
     AplicacaoCaixa.show()
     sys.exit(app.exec_())
-
-
